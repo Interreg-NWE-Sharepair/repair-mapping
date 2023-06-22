@@ -1,0 +1,16 @@
+@import '../../vendor/filament/forms/dist/module.esm.css';
+
+@import 'tailwindcss/base';
+@import './base/base.css';
+
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@import './components/flatpickr.css';
+@import './components/form.css';
+@import './components/glide.css';
+@import './components/modal.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

@@ -1,0 +1,153 @@
+@layer base {
+  body {
+    @apply text-black font-base;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply mb-4 font-bold;
+  }
+
+  h1 {
+    @apply text-3xl;
+  }
+
+  h2 {
+    @apply text-2xl;
+  }
+
+  h3 {
+    @apply text-xl;
+  }
+
+  h4 {
+    @apply text-lg;
+  }
+
+  @screen md {
+    h1 {
+      @apply text-5xl;
+    }
+
+    h2 {
+      @apply text-3xl;
+    }
+
+    h3 {
+      @apply text-2xl;
+    }
+
+    h4 {
+      @apply text-xl;
+    }
+  }
+
+  ::selection {
+    @apply text-white bg-primary-700;
+  }
+
+  *:focus {
+    @apply outline-none ring ring-primary-800;
+  }
+
+  body:not(.user-is-tabbing) *:focus {
+    @apply outline-none ring-0;
+  }
+
+  .lazyload,
+  .lazyloading {
+    opacity: 0;
+  }
+  .lazyloaded {
+    opacity: 1;
+    transition: opacity 300ms;
+  }
+}
+
+
+
+body {
+    @apply antialiased;
+}
+
+.nav__item {
+    @apply py-2 text-center no-underline;
+    border-color: transparent;
+
+    &:hover {
+        @apply font-bold text-primary-dark;
+        border-color: rgba(198, 227, 232, 0.8);
+    }
+
+    &::after {
+        content: attr(data-text);
+        content: attr(data-text) / "";
+        height: 0;
+        visibility: hidden;
+        overflow: hidden;
+        user-select: none;
+        pointer-events: none;
+        font-weight: bold;
+        display: block;
+    }
+}
+
+.skew-dividers {
+    & > div {
+        position: relative;
+        padding-top: 0.75rem;
+        padding-bottom: 0.75rem;
+
+        &::after {
+            position: absolute;
+            top: 0;
+            right: 0;
+            left: 0;
+            opacity: 0.5;
+            background: rgba(51, 51, 51, 0.35);
+            height: 2px;
+            transform: rotate(-1deg);
+            content: "";
+        }
+
+        &:first-child::after {
+            display: none;
+        }
+    }
+}
+
+@media (min-width: 660px) {
+    .skew-dividers {
+        & > div {
+            padding-top: 0;
+            padding-bottom: 0;
+
+            &::after {
+                right: 0;
+                bottom: 0;
+                left: auto;
+                opacity: 0.75;
+                width: 2px;
+                height: auto;
+                transform: rotate(12deg);
+                content: "";
+            }
+
+            &:first-child::after {
+                display: block;
+            }
+
+            &:last-child::after {
+                display: none;
+            }
+        }
+    }
+}
+
+.section--default + .section--default {
+    @apply !pt-0;
+}
