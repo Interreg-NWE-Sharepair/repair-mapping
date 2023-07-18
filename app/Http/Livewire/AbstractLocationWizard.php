@@ -9,7 +9,7 @@ use App\Traits\GetsOrganisationTypes;
 use Closure;
 use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\CheckboxList;
-use Filament\Forms\Components\FileUpload;
+use App\Http\Livewire\Forms\ExtendedFileUpload;
 use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Group;
 use Filament\Forms\Components\Hidden;
@@ -24,7 +24,9 @@ use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\HtmlString;
+use Illuminate\Support\Str;
 use Livewire\Component;
+use Livewire\TemporaryUploadedFile;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use Saloon\Exceptions\InvalidResponseClassException;
 use Saloon\Exceptions\PendingRequestException;
@@ -168,6 +170,7 @@ abstract class AbstractLocationWizard extends Component implements HasForms
                             CheckboxList::make('locales')
                                 ->label(trans('pages.form.language_label'))
                                 ->helperText(trans('pages.form.language_info'))
+                                ->columns(4)
                                 ->required()
                                 ->options([
                                     'de' => 'DE',
@@ -192,7 +195,7 @@ abstract class AbstractLocationWizard extends Component implements HasForms
                                             ->placeholder(trans('pages.form.description_placeholder'))
                                             ->nullable()
                                     ])
-                                    ->visible(fn (Closure $get): bool => in_array('de', $get('locales'))),
+                                    ->visible(fn(Closure $get): bool => in_array('de', $get('locales'))),
                                 Tabs\Tab::make('EN')
                                     ->schema([
                                         TextInput::make('initiative_name_en')
@@ -205,7 +208,7 @@ abstract class AbstractLocationWizard extends Component implements HasForms
                                             ->placeholder(trans('pages.form.description_placeholder'))
                                             ->nullable()
                                     ])
-                                    ->visible(fn (Closure $get): bool => in_array('en', $get('locales'))),
+                                    ->visible(fn(Closure $get): bool => in_array('en', $get('locales'))),
                                 Tabs\Tab::make('FR')
                                     ->schema([
                                         TextInput::make('initiative_name_fr')
@@ -218,7 +221,7 @@ abstract class AbstractLocationWizard extends Component implements HasForms
                                             ->placeholder(trans('pages.form.description_placeholder'))
                                             ->nullable()
                                     ])
-                                    ->visible(fn (Closure $get): bool => in_array('fr', $get('locales'))),
+                                    ->visible(fn(Closure $get): bool => in_array('fr', $get('locales'))),
                                 Tabs\Tab::make('NL')
                                     ->schema([
                                         TextInput::make('initiative_name_nl')
@@ -231,11 +234,10 @@ abstract class AbstractLocationWizard extends Component implements HasForms
                                             ->placeholder(trans('pages.form.description_placeholder'))
                                             ->nullable()
                                     ])
-                                    ->visible(fn (Closure $get): bool => in_array('nl', $get('locales')))
+                                    ->visible(fn(Closure $get): bool => in_array('nl', $get('locales')))
                             ])
                             ->saveRelationshipsWhenHidden(false)
-                            ->visible(fn (Closure $get): bool =>
-                                in_array('de', $get('locales')) ||
+                            ->visible(fn(Closure $get): bool => in_array('de', $get('locales')) ||
                                 in_array('en', $get('locales')) ||
                                 in_array('fr', $get('locales')) ||
                                 in_array('nl', $get('locales'))
@@ -257,7 +259,7 @@ abstract class AbstractLocationWizard extends Component implements HasForms
                                 trans('pages.label.yes'),
                                 trans('pages.label.no')
                             )
-                            ->dehydrateStateUsing(fn ($state) => boolval($state))
+                            ->dehydrateStateUsing(fn($state) => boolval($state))
                             ->statePath('has_warranty')
                             ->lazy(),
                         Tabs::make('')
@@ -269,7 +271,7 @@ abstract class AbstractLocationWizard extends Component implements HasForms
                                             ->statePath('warranty_info.de')
                                             ->nullable()
                                     ])
-                                    ->visible(fn (Closure $get): bool => in_array('de', $get('locales'))),
+                                    ->visible(fn(Closure $get): bool => in_array('de', $get('locales'))),
                                 Tabs\Tab::make('EN')
                                     ->schema([
                                         TextInput::make('warranty_info_en')
@@ -277,7 +279,7 @@ abstract class AbstractLocationWizard extends Component implements HasForms
                                             ->statePath('warranty_info.en')
                                             ->nullable()
                                     ])
-                                    ->visible(fn (Closure $get): bool => in_array('en', $get('locales'))),
+                                    ->visible(fn(Closure $get): bool => in_array('en', $get('locales'))),
                                 Tabs\Tab::make('FR')
                                     ->schema([
                                         TextInput::make('warranty_info_fr')
@@ -285,7 +287,7 @@ abstract class AbstractLocationWizard extends Component implements HasForms
                                             ->statePath('warranty_info.fr')
                                             ->nullable()
                                     ])
-                                    ->visible(fn (Closure $get): bool => in_array('fr', $get('locales'))),
+                                    ->visible(fn(Closure $get): bool => in_array('fr', $get('locales'))),
                                 Tabs\Tab::make('NL')
                                     ->schema([
                                         TextInput::make('warranty_info_nl')
@@ -293,17 +295,17 @@ abstract class AbstractLocationWizard extends Component implements HasForms
                                             ->statePath('warranty_info.nl')
                                             ->nullable()
                                     ])
-                                    ->visible(fn (Closure $get): bool => in_array('nl', $get('locales')))
+                                    ->visible(fn(Closure $get): bool => in_array('nl', $get('locales')))
                             ])
                             ->saveRelationshipsWhenHidden(false)
-                            ->visible(fn (Closure $get): bool => $get('has_warranty') === null ? false : $get('has_warranty')),
-                        FileUpload::make('logo')
+                            ->visible(fn(Closure $get): bool => $get('has_warranty') === null ? false : $get('has_warranty')),
+                        ExtendedFileUpload::make('logo')
                             ->label(trans('pages.form.logo_label'))
                             ->helperText(trans('pages.form.logo_info'))
                             ->image()
                             ->maxSize(20000)
                             ->storeFiles(false),
-                        FileUpload::make('images')
+                        ExtendedFileUpload::make('images')
                             ->label(trans('pages.form.images_label'))
                             ->helperText(trans('pages.form.images_info'))
                             ->multiple()
@@ -346,10 +348,10 @@ abstract class AbstractLocationWizard extends Component implements HasForms
         $list_schema = [];
 
         foreach ($device_types as $parent) {
-            if($parent->isParent()) {
+            if ($parent->isParent()) {
                 $parent_options = [];
                 foreach ($device_types as $child) {
-                    if(!$child->isParent() && $child->parent_category->uuid === $parent->uuid) {
+                    if (!$child->isParent() && $child->parent_category->uuid === $parent->uuid) {
                         $parent_options[$child->uuid] = $child->getTranslatedName($locale);
                     }
                 }
@@ -375,19 +377,28 @@ abstract class AbstractLocationWizard extends Component implements HasForms
     {
         $logo = $state['logo'];
 
-        //TODO: find out what to save to fill in image fields upon form creation (is that even possible?)
-
-        if(!is_null($logo)) $state['logo'] = $logo->get();
-
-        $images = [];
-
-        foreach ($state['images'] as $image) {
-            $images[] = $image->get();
+        if (!is_null($logo)) {
+            $state['logo'] = $this->rememberImageData($state['logo']);
         }
 
+        $images = [];
+        foreach ($state['images'] as $image) {
+            if (!is_null($image)) {
+                $images[] = $this->rememberImageData($image);
+            }
+        }
         $state['images'] = $images;
 
         Session::put(self::PREVIOUS_LOCATION_DATA, $state);
+    }
+
+    private function rememberImageData($image): string
+    {
+        if ($image instanceof TemporaryUploadedFile) {
+            return $image->serializeForLivewireResponse();
+        }
+
+        return $image;
     }
 
     /**
@@ -403,17 +414,14 @@ abstract class AbstractLocationWizard extends Component implements HasForms
 
         $logo = $state['logo'];
 
-        //TODO: Find a way to retain images when returning to correct form
-        if(!is_null($logo)) $state['logo'] = "data:{$logo->getMimeType()};base64," . base64_encode($logo->get());
+        $state['logo'] = $this->transformImageToBase64($logo);
 
         $originals = $state['images'];
         $images = [];
-
-        foreach ($state['images'] as $image) { //TODO: Find a way to retain images when returning to correct form
-            $images[] = "data:{$image->getMimeType()};base64," . base64_encode($image->get());
+        foreach ($state['images'] as $image) {
+            $images[] = $this->transformImageToBase64($image);
         }
-
-        $state['images'] = $images;
+        $state['images'] = array_filter($images);
 
         $connector = new ReplogConnector();
 
@@ -427,18 +435,45 @@ abstract class AbstractLocationWizard extends Component implements HasForms
             session()->flash('danger', $e->getMessage());
         }
 
-        if($response !== null && $response->ok()) {
-            if(!is_null($logo)) $logo->delete();
+        if ($response !== null && $response->ok()) {
+            if (!is_null($logo) && $logo instanceof TemporaryUploadedFile) {
+                $logo->delete();
+            }
             foreach ($originals as $image) {
-                $image->delete();
+                if (!is_null($image) && $image instanceof TemporaryUploadedFile) {
+                    $image->delete();
+                }
             }
 
             Session::forget(self::PREVIOUS_LOCATION_DATA);
-        }
-        else if($response !== null) {
+        } else if ($response !== null) {
             session()->flash('danger', $response->json('message', ''));
         }
 
         $this->redirect($post_route);
+    }
+
+    private function transformImageToBase64($image): ?string
+    {
+        if ($image instanceof TemporaryUploadedFile) {
+            $image = "data:{$image->getMimeType()};base64," . base64_encode($image->get());
+        }
+
+        if (is_string($image) && filter_var($image, FILTER_VALIDATE_URL)) {
+            $contents = file_get_contents($image);
+
+            //Only allow images
+            $headers = implode("\n", $http_response_header);
+            if (preg_match_all("/^content-type\s*:\s*(.*)$/mi", $headers, $matches)) {
+                $content_type = end($matches[1]);
+                if (!Str::startsWith($content_type, 'image/')){
+                    return null;
+                }
+            }
+
+            $image = base64_encode($contents);
+        }
+
+        return $image;
     }
 }

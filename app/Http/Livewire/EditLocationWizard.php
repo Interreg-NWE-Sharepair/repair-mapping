@@ -6,6 +6,7 @@ use App\Http\Saloon\Requests\PostChangeSuggestionRequest;
 use App\Traits\GetsLocation;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Session;
+use Livewire\TemporaryUploadedFile;
 
 class EditLocationWizard extends AbstractLocationWizard
 {
@@ -13,11 +14,15 @@ class EditLocationWizard extends AbstractLocationWizard
 
     public function mount(string $id = null): void
     {
-        if(is_null($id)) response(status: 404)->send();
+        if(is_null($id)){
+            abort(404);
+        }
         $this->location_id = $id;
 
         $data = $this->getLocationForForm($this->location_id);
-        if(empty($data)) response(status: 404)->send();
+        if(empty($data)){
+            abort(404);
+        }
 
         if(Session::exists('previous-data')) {
             parent::mount();

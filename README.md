@@ -2,11 +2,15 @@
 
 ## Setup
 - Clone this repository
-- Check your .env variables, especially the API urls
-- Configure ddev in config.yaml, then start with 'ddev start'
+- Copy `.env.example` to `.env`, configure `.env` to your needs
+- Configure you local environment, e.g. ddev
+- Run `composer install` to install php dependencies
+
+### Frontend
 - Run nvm use to set node version (you might have to install it if you haven't already)
-- Run 'yarn install' & 'composer install' to download dependencies
+- Run 'yarn install' to download frontend dependencies
 - Build css & js with 'yarn dev' or 'yarn watch'
+
 - Done!
 
 ## TODO

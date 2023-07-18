@@ -23,6 +23,9 @@ class LocationController extends Controller
     public function show(string $id): View
     {
         $location = $this->getLocationDetails($id);
+        if (!$location){
+            abort(404);
+        }
         $params = ['location' => $location];
 
         $statsKey = 'has_statistics';

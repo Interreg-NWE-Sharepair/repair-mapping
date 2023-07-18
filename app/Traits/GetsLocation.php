@@ -53,11 +53,10 @@ trait GetsLocation
         return $data;
     }
 
-    public function getLocationDetails(string $id): Location|false
+    public function getLocationDetails(string $id): ?Location
     {
         $response = $this->sendRequest($id);
-
-        if(!$response->ok()) return false;
+        $response->throw();
 
         return Location::createFromResponse($response);
     }
