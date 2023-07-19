@@ -4,11 +4,6 @@
             embed
             :locale="locale"
             :mapbox-access-token="mapboxAccessToken">
-            <template v-slot:locationTitle="{ location, locationTitle, defaultClass }">
-                <a :href="`/${locale}/location/${location?.id}`" :class="defaultClass">
-                    <span>{{ location?.name }}</span>
-                </a>
-            </template>
             <template v-slot:suggestionCta>
                 <r-button
                     :href="`/${$i18n.locale}/location/create`"
