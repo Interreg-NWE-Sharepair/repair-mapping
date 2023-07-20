@@ -67,7 +67,7 @@
                             @foreach($location->contacts['phone'] as $contact)
                                 <div class="flex items-center mt-1">
                                     <r-icon name="contact_phone" class="flex-shrink-0 mr-2 text-primary"></r-icon>
-                                    <a href="`tel:{{ $contact->value }}`" class="underline truncate hover:no-underline">{{ $contact->name }}</a>
+                                    <a href="tel:{{ $contact->value }}" class="underline truncate hover:no-underline">{{ $contact->name }}</a>
                                 </div>
                             @endforeach
                         @endif
@@ -75,7 +75,7 @@
                             @foreach($location->contacts['mobile'] as $contact)
                             <div class="flex items-center mt-1">
                                 <r-icon name="contact_mobile" class="flex-shrink-0 mr-2 text-primary"></r-icon>
-                                <a href="`tel:{{ $contact->value }}`" class="underline truncate hover:no-underline">{{ $contact->name }}</a>
+                                <a href="tel:{{ $contact->value }}" class="underline truncate hover:no-underline">{{ $contact->name }}</a>
                             </div>
                             @endforeach
                         @endif
@@ -83,7 +83,7 @@
                             @foreach($location->contacts['email'] as $contact)
                             <div class="flex items-center mt-1">
                                 <r-icon name="contact_email" class="flex-shrink-0 mr-2 text-primary"></r-icon>
-                                <a href="`mailto:{{ $contact->value }}`" class="underline truncate hover:no-underline">{{ $contact->name }}</a>
+                                <a href="mailto:{{ $contact->value }}" class="underline truncate hover:no-underline">{{ $contact->name }}</a>
                             </div>
                             @endforeach
                         @endif
