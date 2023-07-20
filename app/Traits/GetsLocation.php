@@ -40,7 +40,7 @@ trait GetsLocation
                 'address' => $data['address'],
                 'has_warranty' => $data['has_warranty'],
                 'warranty_description' => $data['has_warranty'] ?? [],
-                'organisation_type' => $data['organisation_type']['id'],
+                'organisation_type' => $data['organisation_type']['id'] ?? null,
                 'device_types' => $types,
                 'contacts' => $data['contacts'],
                 'locales' => $data['locales'],
