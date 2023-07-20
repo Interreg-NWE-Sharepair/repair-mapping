@@ -56,7 +56,14 @@ trait GetsLocation
     public function getLocationDetails(string $id): ?Location
     {
         $response = $this->sendRequest($id);
-        $response->throw();
+
+        if ($response->serverError()){
+            $response->throw();
+        }
+
+        if ($response->clientError()){
+            return null;
+        }
 
         return Location::createFromResponse($response);
     }
