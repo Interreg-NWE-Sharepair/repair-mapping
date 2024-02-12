@@ -154,7 +154,7 @@ class Location
         );
     }
 
-    public function getTranslatedName(string $locale): string
+    public function getTranslatedName(string $locale): ?string
     {
         $name = '';
 

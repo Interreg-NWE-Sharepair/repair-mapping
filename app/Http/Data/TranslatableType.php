@@ -25,7 +25,7 @@ class TranslatableType
         if(in_array($locale, $supported_locales)) $this->name[$locale] = $translation;
     }
 
-    public function getTranslatedName(string $locale): string
+    public function getTranslatedName(string $locale): ?string
     {
         return !empty($this->name) && $this->name[$locale] ? $this->name[$locale] : $this->name['default'] ?? '';
     }
