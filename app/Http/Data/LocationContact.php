@@ -6,14 +6,14 @@ class LocationContact
 {
     public string $name;
     public string $value;
-    public string $type;
+    public ?string $type;
 
     /**
      * @param string $name
      * @param string $value
-     * @param string $type
+     * @param ?string $type
      */
-    public function __construct(string $name, string $value, string $type)
+    public function __construct(string $name, string $value, ?string $type = null)
     {
         $this->name = $name;
         $this->value = $value;
