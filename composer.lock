@@ -4014,16 +4014,16 @@
         },
         {
             "name": "statikbe/laravel-cookie-consent",
-            "version": "1.5.0",
+            "version": "1.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/statikbe/laravel-cookie-consent.git",
-                "reference": "dd00e918e8be2ec4def93fd9ee35a4850899ff3b"
+                "reference": "a65505d45f26b88892bde40748bf1c972fe7ac58"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/statikbe/laravel-cookie-consent/zipball/dd00e918e8be2ec4def93fd9ee35a4850899ff3b",
-                "reference": "dd00e918e8be2ec4def93fd9ee35a4850899ff3b",
+                "url": "https://api.github.com/repos/statikbe/laravel-cookie-consent/zipball/a65505d45f26b88892bde40748bf1c972fe7ac58",
+                "reference": "a65505d45f26b88892bde40748bf1c972fe7ac58",
                 "shasum": ""
             },
             "require": {
@@ -4063,9 +4063,9 @@
             ],
             "support": {
                 "issues": "https://github.com/statikbe/laravel-cookie-consent/issues",
-                "source": "https://github.com/statikbe/laravel-cookie-consent/tree/1.5.0"
+                "source": "https://github.com/statikbe/laravel-cookie-consent/tree/1.6.0"
             },
-            "time": "2023-02-15T07:38:02+00:00"
+            "time": "2024-03-04T12:24:04+00:00"
         },
         {
             "name": "symfony/console",
