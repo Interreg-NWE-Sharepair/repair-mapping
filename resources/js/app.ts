@@ -6,9 +6,6 @@ import NotificationsAlpinePlugin from '../../vendor/filament/notifications/dist/
 
 import Vue from 'vue';
 
-import ApolloClient from 'apollo-boost';
-import VueApollo from 'vue-apollo';
-
 import RepairComponents from '@statikbe/repair-components';
 import RepairMapPlugin from '@statikbe/repair-map';
 import CustomRepairComponent from './components/vue/CustomRepairMap.vue';
@@ -18,16 +15,6 @@ import MapI18n from '@statikbe/repair-map/src/i18n';
 
 import VueI18n from 'vue-i18n';
 
-const apolloClient = new ApolloClient({
-    // You should use an absolute URL here
-    uri: process.env.REPAIR_MAP_GRAPHQL_HTTP || 'https://ordp.datascienceinstitute.ie/',
-});
-
-const apolloProvider = new VueApollo({
-    defaultClient: apolloClient,
-});
-
-Vue.use(VueApollo);
 
 Vue.use(VueI18n);
 
@@ -50,7 +37,7 @@ Vue.use(RepairComponents);
 Vue.use(RepairMapPlugin);
 Vue.component('CustomRepairMap', CustomRepairComponent);
 
-new Vue({ i18n: i18n, apolloProvider }).$mount('#app');
+new Vue({ i18n: i18n }).$mount('#app');
 
 window.Alpine = Alpine;
 
@@ -58,31 +45,3 @@ Alpine.plugin(FormsAlpinePlugin);
 Alpine.plugin(NotificationsAlpinePlugin);
 
 Alpine.start();
-
-// Components
-
-import { DatePickerComponent } from './components/datepicker';
-new DatePickerComponent();
-
-import { GlideComponent } from './components/glide';
-new GlideComponent();
-
-import './components/lazySizes';
-
-import { ModalComponent } from './components/modal';
-// new ModalComponent();
-
-import { ImageModalPlugin } from './plugins/modal/image.plugin';
-import { VideoModalPlugin } from './plugins/modal/video.plugin';
-new ModalComponent({
-  plugins: [ImageModalPlugin, VideoModalPlugin],
-});
-
-import { PasswordToggleComponent } from './components/passwordToggle';
-new PasswordToggleComponent();
-
-import { PullOutComponent } from './components/pullout';
-new PullOutComponent();
-
-import { ResponsiveBackgroundComponent } from './components/responsiveBackground';
-new ResponsiveBackgroundComponent();

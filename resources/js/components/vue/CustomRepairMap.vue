@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <ordp-map
+        <repair-map
             embed
             :locale="locale"
             :mapbox-access-token="mapboxAccessToken">
@@ -16,7 +16,7 @@
                     {{ $t('create_new_cta') }}
                 </r-button>
             </template>
-        </ordp-map>
+        </repair-map>
     </div>
 </template>
 

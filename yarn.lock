@@ -1029,10 +1029,10 @@
     vue-js-modal "2.0.1"
     vue-multiselect "^2.1.6"
 
-"@statikbe/repair-map@^1.0.0":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@statikbe/repair-map/-/repair-map-1.0.1.tgz#33952f04dfa54a36914d2d19ec10a48436919c64"
-  integrity sha512-KqI9pt2X25AQ8VrkLdG+uyFE19nNM1LH/JsPAcozEK6CLMej0hXcCLcl9mdNJqS5ek/SBcYPrsT9WwNL2DzONA==
+"@statikbe/repair-map@^3.0.3":
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/@statikbe/repair-map/-/repair-map-3.0.3.tgz#e2b566ffa7ed0c80fe935789aaa22148a5d8791c"
+  integrity sha512-YGYXnQ1jT+YRVgn12ZnBrV8HnWXIq5mSPFL9N9IgeRKXf2kHWWueZngl9zKMoldbOaMNRqAYoUBZTCfQzveBpw==
   dependencies:
     "@mdi/js" "^5.9.55"
     "@statikbe/repair-components" "^1.0.0"
@@ -1046,6 +1046,7 @@
     leaflet "^1.9.3"
     leaflet.markercluster "^1.5.3"
     postcss "^7"
+    qs "^6.11.2"
     tailwindcss "npm:@tailwindcss/postcss7-compat@^2.0.2"
     vue "^2.7.14"
     vue-apollo "^3.1.0"
@@ -7434,6 +7435,13 @@ qs@6.7.0:
   version "6.7.0"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.7.0.tgz#41dc1a015e3d581f1621776be31afb2876a9b1bc"
   integrity sha512-VCdBRNFTX1fyE7Nb6FYoURo/SPe62QCaAyzJvUjwRaIsc+NePBEniHlvxFmmX56+HZphIGtV0XeCirBtpDrTyQ==
+
+qs@^6.11.2:
+  version "6.11.2"
+  resolved "https://registry.yarnpkg.com/qs/-/qs-6.11.2.tgz#64bea51f12c1f5da1bc01496f48ffcff7c69d7d9"
+  integrity sha512-tDNIz22aBzCDxLtVH++VnTfzxlfeK5CbqohpSqpJgj1Wg/cQbStNAz3NuqCs5vV+pjBsK4x4pN9HlVh7rcYRiA==
+  dependencies:
+    side-channel "^1.0.4"
 
 qs@^6.4.0:
   version "6.10.5"

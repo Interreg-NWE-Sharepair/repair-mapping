@@ -27,6 +27,13 @@
                                     </span>
                                 @endif
                             </div>
+
+                            @if(!empty($location->eco_cheques))
+                                <div class="font-semibold text-small flex items-center mt-1 px-4">
+                                    <x-ecocheque-image/>
+                                    <span>{{ $location->getEcoChequesJoinedString() }}</span>
+                                </div>
+                            @endif
                             @if($location->active_repairers_count)
                             <div class="px-4">
                                 <span class="mr-1 text-secondary"> {{ $location->active_repairers_count }} </span>

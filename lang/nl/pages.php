@@ -279,5 +279,10 @@ return [
         'email' => 'Dit is geen geldig e-mailadres.',
         'required' => 'Dit veld is verplicht.',
         'website' => 'Dit is geen geldige website.'
-    ]
+    ],
+    'ecocheque' => [
+        'monizze' => 'Monizze',
+        'edenred' => 'Edenred',
+        'pluxee' => 'Pluxee',
+    ],
 ];

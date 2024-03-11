@@ -50,6 +50,7 @@ class Location
     public bool $active_on_repair_connects;
     public int $active_repairers_count;
     public int $repaired_devices_count;
+    public ?array $eco_cheques;
 
     /**
      * @param string|null $id
@@ -72,12 +73,13 @@ class Location
      * @param bool $active_on_repair_connects
      * @param int $active_repairers_count
      * @param int $repaired_devices_count
+     * @param array|null $eco_cheques
      */
     public function __construct(string|null $id, array $name, array $slug, array $description, array $product_description,
                                 Address $address, string|null $address_formatted, Geometry $geometry, bool $has_warranty,
                                 array $warranty_description, TranslatableType|null $organisation_type, array $device_types,
                                 array $activity_sectors, array $contacts, array $locales, MainImageFile|null $logo, array $images,
-                                bool $active_on_repair_connects, int $active_repairers_count, int $repaired_devices_count)
+                                bool $active_on_repair_connects, int $active_repairers_count, int $repaired_devices_count, array|null $eco_cheques)
     {
         $this->id = $id;
         $this->name = $name;
@@ -99,6 +101,7 @@ class Location
         $this->active_on_repair_connects = $active_on_repair_connects;
         $this->active_repairers_count = $active_repairers_count;
         $this->repaired_devices_count = $repaired_devices_count;
+        $this->eco_cheques = $eco_cheques;
     }
 
     public static function createFromResponse(Response $response): static
@@ -150,7 +153,9 @@ class Location
             $images,
             $data['active_on_repair_connects'] ?? false,
             $data['active_repairers_count'] ?? 0,
-            $data['repaired_devices_count'] ?? 0
+            $data['repaired_devices_count'] ?? 0,
+            $data['ecocheques'] ?? [],
+
         );
     }
 
@@ -207,5 +212,12 @@ class Location
         }
 
         return $slug;
+    }
+
+    public function getEcoChequesJoinedString(): string
+    {
+        return implode(', ', array_map(function($item){
+            return trans('pages.ecocheque.'.$item);
+        }, $this->eco_cheques));
     }
 }

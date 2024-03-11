@@ -46,6 +46,7 @@ trait GetsLocation
                 'locales' => $data['locales'],
                 'logo' => $data['logo'] ? $data['logo']['url'] : null,
                 'images' => $images,
+                'ecocheques' => $data['ecocheques'],
                 'accepted_general_terms' => true
             ];
         }

@@ -278,5 +278,10 @@ return [
         'email' => 'Dies ist keine gültige E-Mail Adresse.',
         'required' => 'Dieses Feld ist erforderlich.',
         'website' => 'Dies ist keine gültige Website.'
-    ]
+    ],
+    'ecocheque' => [
+        'monizze' => 'Monizze',
+        'edenred' => 'Edenred',
+        'pluxee' => 'Pluxee',
+    ],
 ];
