@@ -38,5 +38,8 @@
         "flatpickr": "^4.6.13",
         "iframe-resizer": "^4.3.6",
         "lazysizes": "^5.3.2"
+    },
+    "engines": {
+        "node": "16.x"
     }
 }
