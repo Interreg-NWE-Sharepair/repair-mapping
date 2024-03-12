@@ -33,7 +33,7 @@
     "dependencies": {
         "@glidejs/glide": "^3.5.2",
         "@statikbe/repair-components": "^1.0.2",
-        "@statikbe/repair-map": "^3.0.3",
+        "@statikbe/repair-map": "^3.0.4",
         "@tailwindcss/aspect-ratio": "^0.4.2",
         "flatpickr": "^4.6.13",
         "iframe-resizer": "^4.3.6",

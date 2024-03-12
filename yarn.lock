@@ -1029,10 +1029,10 @@
     vue-js-modal "2.0.1"
     vue-multiselect "^2.1.6"
 
-"@statikbe/repair-map@^3.0.3":
-  version "3.0.3"
-  resolved "https://registry.yarnpkg.com/@statikbe/repair-map/-/repair-map-3.0.3.tgz#e2b566ffa7ed0c80fe935789aaa22148a5d8791c"
-  integrity sha512-YGYXnQ1jT+YRVgn12ZnBrV8HnWXIq5mSPFL9N9IgeRKXf2kHWWueZngl9zKMoldbOaMNRqAYoUBZTCfQzveBpw==
+"@statikbe/repair-map@^3.0.4":
+  version "3.0.4"
+  resolved "https://registry.yarnpkg.com/@statikbe/repair-map/-/repair-map-3.0.4.tgz#727452230bee8b72b50fa8a63d556e72088e9428"
+  integrity sha512-ufFk8XRJpHxx+03bpshH3QIx+orXVqWmFPazXbPbbkgHvVn8/JtG5ZNOYSDJz08CmEB6L8Fh+DWhe+prdfpwKA==
   dependencies:
     "@mdi/js" "^5.9.55"
     "@statikbe/repair-components" "^1.0.0"
