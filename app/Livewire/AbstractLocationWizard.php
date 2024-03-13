@@ -298,14 +298,18 @@ abstract class AbstractLocationWizard extends Component implements HasForms
                             ->helperText(trans('pages.form.device_types_info')),
                         Group::make($this->createDeviceTypeSchema($locale)),
                         CheckboxList::make('ecocheques')
+                            ->label(trans('pages.form.ecocheques_label'))
                             ->options([
                                 'monizze' => 'Monizze',
                                 'edenred' => 'Edenred',
                                 'pluxee' => 'Pluxee',
                             ])
                             ->columns(3)
-                            ->statePath('ecocheques')
-                            ->bulkToggleable(),
+                            ->statePath('ecocheques'),
+                        TextInput::make('vat_number')
+                            ->label(trans('pages.form.vat_number_label'))
+                            ->statePath('vat_number')
+                            ->nullable(),
                         Radio::make('warranty')
                             ->label(trans('pages.form.warranty.label'))
                             ->helperText(trans('pages.form.warranty.text'))

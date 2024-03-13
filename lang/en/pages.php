@@ -71,7 +71,9 @@ return [
             'info_label' => 'Warranty info',
             'label' => 'Warranty',
             'text' => 'Does a warranty apply to the repairs?'
-        ]
+        ],
+        'vat_number_label' => 'VAT number',
+        'ecocheques_label' => 'Ecocheques',
     ],
     'label' => [
         'active_repairers' => 'active repairers',

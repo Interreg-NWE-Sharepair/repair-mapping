@@ -72,7 +72,9 @@ return [
             'info_label' => 'Garantie info',
             'label' => 'Garantie',
             'text' => 'Is er garantie van toepassing op de herstellingen?'
-        ]
+        ],
+        'vat_number_label' => 'BTW nummer',
+        'ecocheques_label' => 'Ecocheques',
     ],
     'label' => [
         'active_repairers' => 'actieve herstellers',

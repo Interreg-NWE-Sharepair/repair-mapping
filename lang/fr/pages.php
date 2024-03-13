@@ -71,7 +71,9 @@ return [
             'info_label' => 'Informations sur la garantie',
             'label' => 'Garantie',
             'text' => 'Une garantie s\'applique-t-elle aux réparations?'
-        ]
+        ],
+        'vat_number_label' => 'Numéro de TVA',
+        'ecocheques_label' => 'Ecochèques',
     ],
     'label' => [
         'active_repairers' => 'réparateurs actifs',

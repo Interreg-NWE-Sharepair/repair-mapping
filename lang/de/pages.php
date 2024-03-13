@@ -71,7 +71,9 @@ return [
             'info_label' => 'Informationen zur Garantie',
             'label' => 'Garantie',
             'text' => 'Gilt für die Reparaturen eine Garantie?'
-        ]
+        ],
+        'vat_number_label' => 'Umsatzsteueridentifikationsnummer',
+        'ecocheques_label' => 'Ecocheques',
     ],
     'label' => [
         'active_repairers' => 'aktive Reparateure',
