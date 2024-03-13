@@ -15,14 +15,14 @@
         <!-- Styles -->
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 
-        @livewireStyles
+        @filamentStyles
 
         <!-- Scripts -->
-        <script src="{{ mix('js/manifest.js') }}" defer></script>
-        <script src="{{ mix('js/vendor.js') }}" defer></script>
+{{--        <script src="{{ mix('js/manifest.js') }}" defer></script>--}}
+{{--        <script src="{{ mix('js/vendor.js') }}" defer></script>--}}
         <script src="{{ mix('js/app.js') }}" defer></script>
         <link rel="stylesheet" type="text/css" href="{{asset("vendor/cookie-consent/css/cookie-consent.css")}}">
-        @livewireScripts
+        @filamentScripts
     </head>
     <body class="antialiased">
         <div id="app">

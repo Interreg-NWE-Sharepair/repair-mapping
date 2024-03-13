@@ -1,21 +1,24 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Livewire;
 
 use App\Http\Saloon\ReplogConnector;
 use App\Http\Saloon\Requests\JsonPostRequest;
 use App\Traits\GetsDeviceTypes;
 use App\Traits\GetsOrganisationTypes;
 use Closure;
+use Filament\Forms\Components\Actions\Action;
 use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\CheckboxList;
-use App\Http\Livewire\Forms\ExtendedFileUpload;
+use App\Livewire\Forms\ExtendedFileUpload;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Group;
 use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\Repeater;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
@@ -26,7 +29,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\HtmlString;
 use Illuminate\Support\Str;
 use Livewire\Component;
-use Livewire\TemporaryUploadedFile;
+use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use Saloon\Exceptions\InvalidResponseClassException;
 use Saloon\Exceptions\PendingRequestException;
@@ -41,10 +44,17 @@ abstract class AbstractLocationWizard extends Component implements HasForms
 
     public ?string $location_id;
 
+    public $data;
+
     public function mount(string $id = null): void
     {
         $this->form->fill(Session::get(self::PREVIOUS_LOCATION_DATA));
         Session::forget(self::PREVIOUS_LOCATION_DATA);
+    }
+
+    protected function getFormStatePath(): ?string
+    {
+        return 'data';
     }
 
     protected function getFormSchema(): array
@@ -94,9 +104,14 @@ abstract class AbstractLocationWizard extends Component implements HasForms
                                     ->nullable(),
                             ]),
                         Repeater::make('contacts.email')
-                            ->label(trans('pages.form.contacts.email_label'))
-                            ->orderable(false)
-                            ->defaultItems(0)
+                            ->label(trans('pages.form.contacts.email.label'))
+                            ->addActionLabel(trans('pages.form.contacts.email.add_label'))
+                            ->reorderable(false)
+                            ->addAction(
+                                fn(Action $action) => $action
+                                    ->link()
+                                    ->icon('heroicon-o-plus'),
+                            )
                             ->schema([
                                 TextInput::make('value')
                                     ->label('')
@@ -104,56 +119,87 @@ abstract class AbstractLocationWizard extends Component implements HasForms
                                     ->nullable(),
                             ]),
                         Repeater::make('contacts.mobile')
-                            ->label(trans('pages.form.contacts.mobile_label'))
-                            ->orderable(false)
-                            ->defaultItems(0)
+                            ->label(trans('pages.form.contacts.mobile.label'))
+                            ->addActionLabel(trans('pages.form.contacts.mobile.add_label'))
+                            ->reorderable(false)
+                            ->addAction(
+                                fn(Action $action) => $action
+                                    ->link()
+                                    ->icon('heroicon-o-plus'),
+                            )
                             ->schema([
                                 TextInput::make('value')
                                     ->label('')
                                     ->nullable(),
                             ]),
                         Repeater::make('contacts.phone')
-                            ->label(trans('pages.form.contacts.phone_label'))
-                            ->orderable(false)
-                            ->defaultItems(0)
+                            ->label(trans('pages.form.contacts.phone.label'))
+                            ->addActionLabel(trans('pages.form.contacts.phone.add_label'))
+                            ->reorderable(false)
+                            ->addAction(
+                                fn(Action $action) => $action
+                                    ->link()
+                                    ->icon('heroicon-o-plus'),
+                            )
                             ->schema([
                                 TextInput::make('value')
                                     ->label('')
                                     ->nullable(),
                             ]),
                         Repeater::make('contacts.website')
-                            ->label(trans('pages.form.contacts.website_label'))
-                            ->helperText(trans('pages.form.contacts.website_info'))
-                            ->orderable(false)
-                            ->defaultItems(0)
+                            ->label(trans('pages.form.contacts.website.label'))
+                            ->addActionLabel(trans('pages.form.contacts.website.add_label'))
+                            ->helperText(trans('pages.form.contacts.website.info'))
+                            ->reorderable(false)
+                            ->addAction(
+                                fn(Action $action) => $action
+                                    ->link()
+                                    ->icon('heroicon-o-plus'),
+                            )
                             ->schema([
                                 TextInput::make('value')
+                                    ->placeholder(trans('pages.form.contacts.website.placeholder'))
                                     ->label('')
                                     ->url()
                                     ->nullable()
                             ]),
                         Repeater::make('contacts.facebook')
-                            ->label(trans('pages.form.contacts.facebook_label'))
-                            ->orderable(false)
-                            ->defaultItems(0)
+                            ->label(trans('pages.form.contacts.facebook.label'))
+                            ->addActionLabel(trans('pages.form.contacts.facebook.add_label'))
+                            ->reorderable(false)
+                            ->addAction(
+                                fn(Action $action) => $action
+                                    ->link()
+                                    ->icon('heroicon-o-plus'),
+                            )
                             ->schema([
                                 TextInput::make('value')
                                     ->label('')
                                     ->nullable(),
                             ]),
                         Repeater::make('contacts.instagram')
-                            ->label(trans('pages.form.contacts.instagram_label'))
-                            ->orderable(false)
-                            ->defaultItems(0)
+                            ->label(trans('pages.form.contacts.instagram.label'))
+                            ->addActionLabel(trans('pages.form.contacts.instagram.add_label'))
+                            ->reorderable(false)
+                            ->addAction(
+                                fn(Action $action) => $action
+                                    ->link()
+                                    ->icon('heroicon-o-plus'),
+                            )
                             ->schema([
                                 TextInput::make('value')
                                     ->label('')
                                     ->nullable(),
                             ]),
                         Repeater::make('contacts.linkedin')
-                            ->label(trans('pages.form.contacts.linkedin_label'))
-                            ->orderable(false)
-                            ->defaultItems(0)
+                            ->label(trans('pages.form.contacts.linkedin.label'))
+                            ->addActionLabel(trans('pages.form.contacts.linkedin.add_label'))
+                            ->reorderable(false)
+                            ->addAction(
+                                fn(Action $action) => $action
+                                    ->link()
+                                    ->icon('heroicon-o-plus'),
+                            )
                             ->schema([
                                 TextInput::make('value')
                                     ->label('')
@@ -195,7 +241,7 @@ abstract class AbstractLocationWizard extends Component implements HasForms
                                             ->placeholder(trans('pages.form.description_placeholder'))
                                             ->nullable()
                                     ])
-                                    ->visible(fn(Closure $get): bool => in_array('de', $get('locales'))),
+                                    ->visible(fn(\Filament\Forms\Get $get): bool => in_array('de', $get('locales'))),
                                 Tabs\Tab::make('EN')
                                     ->schema([
                                         TextInput::make('initiative_name_en')
@@ -208,7 +254,7 @@ abstract class AbstractLocationWizard extends Component implements HasForms
                                             ->placeholder(trans('pages.form.description_placeholder'))
                                             ->nullable()
                                     ])
-                                    ->visible(fn(Closure $get): bool => in_array('en', $get('locales'))),
+                                    ->visible(fn(\Filament\Forms\Get $get): bool => in_array('en', $get('locales'))),
                                 Tabs\Tab::make('FR')
                                     ->schema([
                                         TextInput::make('initiative_name_fr')
@@ -221,7 +267,7 @@ abstract class AbstractLocationWizard extends Component implements HasForms
                                             ->placeholder(trans('pages.form.description_placeholder'))
                                             ->nullable()
                                     ])
-                                    ->visible(fn(Closure $get): bool => in_array('fr', $get('locales'))),
+                                    ->visible(fn(\Filament\Forms\Get $get): bool => in_array('fr', $get('locales'))),
                                 Tabs\Tab::make('NL')
                                     ->schema([
                                         TextInput::make('initiative_name_nl')
@@ -234,10 +280,10 @@ abstract class AbstractLocationWizard extends Component implements HasForms
                                             ->placeholder(trans('pages.form.description_placeholder'))
                                             ->nullable()
                                     ])
-                                    ->visible(fn(Closure $get): bool => in_array('nl', $get('locales')))
+                                    ->visible(fn(\Filament\Forms\Get $get): bool => in_array('nl', $get('locales')))
                             ])
                             ->saveRelationshipsWhenHidden(false)
-                            ->visible(fn(Closure $get): bool => in_array('de', $get('locales')) ||
+                            ->visible(fn(\Filament\Forms\Get $get): bool => in_array('de', $get('locales')) ||
                                 in_array('en', $get('locales')) ||
                                 in_array('fr', $get('locales')) ||
                                 in_array('nl', $get('locales'))
@@ -280,7 +326,7 @@ abstract class AbstractLocationWizard extends Component implements HasForms
                                             ->statePath('warranty_info.de')
                                             ->nullable()
                                     ])
-                                    ->visible(fn(Closure $get): bool => in_array('de', $get('locales'))),
+                                    ->visible(fn(\Filament\Forms\Get $get): bool => in_array('de', $get('locales'))),
                                 Tabs\Tab::make('EN')
                                     ->schema([
                                         TextInput::make('warranty_info_en')
@@ -288,7 +334,7 @@ abstract class AbstractLocationWizard extends Component implements HasForms
                                             ->statePath('warranty_info.en')
                                             ->nullable()
                                     ])
-                                    ->visible(fn(Closure $get): bool => in_array('en', $get('locales'))),
+                                    ->visible(fn(\Filament\Forms\Get $get): bool => in_array('en', $get('locales'))),
                                 Tabs\Tab::make('FR')
                                     ->schema([
                                         TextInput::make('warranty_info_fr')
@@ -296,7 +342,7 @@ abstract class AbstractLocationWizard extends Component implements HasForms
                                             ->statePath('warranty_info.fr')
                                             ->nullable()
                                     ])
-                                    ->visible(fn(Closure $get): bool => in_array('fr', $get('locales'))),
+                                    ->visible(fn(\Filament\Forms\Get $get): bool => in_array('fr', $get('locales'))),
                                 Tabs\Tab::make('NL')
                                     ->schema([
                                         TextInput::make('warranty_info_nl')
@@ -304,14 +350,15 @@ abstract class AbstractLocationWizard extends Component implements HasForms
                                             ->statePath('warranty_info.nl')
                                             ->nullable()
                                     ])
-                                    ->visible(fn(Closure $get): bool => in_array('nl', $get('locales')))
+                                    ->visible(fn(\Filament\Forms\Get $get): bool => in_array('nl', $get('locales')))
                             ])
                             ->saveRelationshipsWhenHidden(false)
-                            ->visible(fn(Closure $get): bool => $get('has_warranty') === null ? false : $get('has_warranty')),
+                            ->visible(fn(\Filament\Forms\Get $get): bool => $get('has_warranty') === null ? false : $get('has_warranty')),
                         ExtendedFileUpload::make('logo')
                             ->label(trans('pages.form.logo_label'))
                             ->helperText(trans('pages.form.logo_info'))
                             ->image()
+                            ->fetchFileInformation(false)
                             ->maxSize(20000)
                             ->storeFiles(false),
                         ExtendedFileUpload::make('images')
@@ -319,6 +366,7 @@ abstract class AbstractLocationWizard extends Component implements HasForms
                             ->helperText(trans('pages.form.images_info'))
                             ->multiple()
                             ->image()
+                            ->fetchFileInformation(false)
                             ->maxSize(20000)
                             ->storeFiles(false)
                     ]),
@@ -346,7 +394,6 @@ abstract class AbstractLocationWizard extends Component implements HasForms
                             ->required()
                     ])
             ])
-                ->extraAttributes(['class' => 'py-6 sm:py-12'])
                 ->submitAction(new HtmlString('<button type="submit" class="filament-button filament-button-size-sm inline-flex items-center justify-center py-1 gap-1 font-medium rounded-lg border transition-colors outline-none focus:ring-offset-2 focus:ring-2 focus:ring-inset min-h-[2rem] px-3 text-sm text-white shadow focus:ring-white border-transparent bg-primary-600 hover:bg-primary-500 focus:bg-primary-700 focus:ring-offset-primary-700">' . trans("pages.label.submit") . '</button>'))
         ];
     }
@@ -475,7 +522,7 @@ abstract class AbstractLocationWizard extends Component implements HasForms
             $headers = implode("\n", $http_response_header);
             if (preg_match_all("/^content-type\s*:\s*(.*)$/mi", $headers, $matches)) {
                 $content_type = end($matches[1]);
-                if (!Str::startsWith($content_type, 'image/')){
+                if (!Str::startsWith($content_type, 'image/')) {
                     return null;
                 }
             }

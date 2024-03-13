@@ -1,9 +1,19 @@
-const defaultTheme = require('tailwindcss/defaultTheme');
-const defaultColors = require('tailwindcss/colors')
-const colorShade = require('./resources/tailwind-plugins/color-shades');
+/** @type {import('tailwindcss').Config} */
+import defaultColors from "tailwindcss/colors";
+import colorShade from "./resources/tailwind-plugins/color-shades";
+import defaultTheme from "tailwindcss/defaultTheme";
+import preset from './vendor/filament/support/tailwind.config.preset'
+
 
 const siteColors = {
     ...defaultColors,
+    custom: {
+        DEFAULT: '#71b8c5',
+        contrast: '#ffffff',
+        dark: defaultColors.gray[900],
+        hover: '#EE4737',
+        hoverContrast: '#ffffff',
+    },
     primary: {
         DEFAULT: '#71b8c5',
         contrast: '#ffffff',
@@ -22,7 +32,8 @@ const siteColors = {
     danger: defaultColors.rose,
 };
 
-module.exports = {
+export default {
+    darkMode: 'class',
     presets: [require('@statikbe/repair-components')],
     content: [
         './node_modules/@statikbe/repair-components/**/*.{vue,js}',
@@ -59,7 +70,7 @@ module.exports = {
             },
             colors: {
                 ...siteColors,
-                active: siteColors.DEFAULT
+                active: siteColors.primary.DEFAULT
             },
             typography: (theme) => ({
                 DEFAULT: {
@@ -117,4 +128,4 @@ module.exports = {
         require('./resources/tailwind-plugins/typography'),
         colorShade(siteColors),
     ],
-};
+}

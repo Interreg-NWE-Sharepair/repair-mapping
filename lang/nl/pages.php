@@ -17,15 +17,36 @@ return [
             'street_label' => 'Straat',
         ],
         'contacts' => [
-            'email_label' => 'E-mail',
-            'facebook_label' => 'Facebook',
-            'instagram_label' => 'Instagram',
-            'linkedin_label' => 'LinkedIn',
-            'mobile_label' => 'Mobiel',
-            'phone_label' => 'Telefoon',
-            'website_info' => 'Het websiteadres moet alle nodige elementen bevatten (https://...). Je kan best gewoon de URL van je website kopiëren en in dit veld plakken.',
-            'website_label' => 'Website',
-            'website_placeholder' => 'bv. https://www.repair.org/'
+            'email' => [
+                'label' => 'E-mailadres',
+                'add_label' => 'E-mailadres toevoegen',
+            ],
+            'facebook' => [
+                'label' => 'Facebook',
+                'add_label' => 'Facebook pagina toevoegen',
+            ],
+            'instagram' => [
+                'label' => 'Instagram',
+                'add_label' => 'Instagram pagina toevoegen',
+            ],
+            'linkedin' => [
+                'label' => 'LinkedIn',
+                'add_label' => 'LinkedIn pagina toevoegen',
+            ],
+            'mobile' => [
+                'label' => 'Mobiel',
+                'add_label' => 'Mobiel nummer toevoegen',
+            ],
+            'phone' => [
+                'label' => 'Telefoonnummer',
+                'add_label' => 'Telefoonnummer toevoegen',
+            ],
+            'website' => [
+                'label' => 'Website',
+                'add_label' => 'Website toevoegen',
+                'info' => 'Het websiteadres moet alle nodige elementen bevatten (https://...). Je kan best gewoon de URL van je website kopiëren en in dit veld plakken.',
+                'placeholder' => 'bv. https://www.repair.org/',
+            ],
         ],
         'description_label' => 'Beschrijving',
         'description_placeholder' => 'Wat doet jouw organisatie? Hoe helpt zij afval te verminderen door apparaten te repareren?',

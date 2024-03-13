@@ -16,15 +16,36 @@ return [
             'street_label' => 'Street',
         ],
         'contacts' => [
-            'email_label' => 'Email',
-            'facebook_label' => 'Facebook',
-            'instagram_label' => 'Instagram',
-            'linkedin_label' => 'LinkedIn',
-            'mobile_label' => 'Mobile',
-            'phone_label' => 'Phone',
-            'website_info' => 'The website address must contain all necessary elements (https://...). I\'s best to just copy the URL of your website and paste it into this field.',
-            'website_label' => 'Website',
-            'website_placeholder' => 'e.g. https://www.repair.org/'
+            'email' => [
+                'label' => 'Email',
+                'add_label' => 'Add email address',
+            ],
+            'facebook' => [
+                'label' => 'Facebook',
+                'add_label' => 'Add facebook page',
+            ],
+            'instagram' => [
+                'label' => 'Instagram',
+                'add_label' => 'Add Instagram page',
+            ],
+            'linkedin' => [
+                'label' => 'LinkedIn',
+                'add_label' => 'Add LinkedIn page',
+            ],
+            'mobile' => [
+                'label' => 'Mobile',
+                'add_label' => 'Add mobile number',
+            ],
+            'phone' => [
+                'label' => 'Phone',
+                'add_label' => 'Add phone number',
+            ],
+            'website' => [
+                'label' => 'Website',
+                'add_label' => 'Add website',
+                'placeholder' => 'e.g. https://www.repair.org/',
+                'info' => 'The website address must contain all necessary elements (https://...). I\'s best to just copy the URL of your website and paste it into this field.',
+            ],
         ],
         'description_label' => 'Description',
         'description_placeholder' => 'What does your organisation do? How does it help to reduce waste by repairing devices?',

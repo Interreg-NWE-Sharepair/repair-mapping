@@ -151,3 +151,8 @@ body {
 .section--default + .section--default {
     @apply !pt-0;
 }
+
+
+.filepond--label-action {
+    @apply !text-primary-600;
+}

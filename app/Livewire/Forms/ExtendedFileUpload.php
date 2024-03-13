@@ -1,11 +1,12 @@
 <?php
-namespace App\Http\Livewire\Forms;
+namespace App\Livewire\Forms;
 
 use Filament\Forms\Components\BaseFileUpload;
 use Illuminate\Filesystem\FilesystemAdapter;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use League\Flysystem\UnableToCheckFileExistence;
+use Throwable;
 
 class ExtendedFileUpload extends \Filament\Forms\Components\FileUpload
 {
@@ -13,30 +14,33 @@ class ExtendedFileUpload extends \Filament\Forms\Components\FileUpload
     {
         parent::setUp();
 
-        $this->getUploadedFileUrlUsing(static function (BaseFileUpload $component, string $file): ?string {
+        $this->getUploadedFileUsing(static function (BaseFileUpload $component, string $file, string | array | null $storedFileNames): ?array {
             /** @var FilesystemAdapter $storage */
             $storage = $component->getDisk();
 
-            try {
-                if (!$storage->exists($file)) {
-                    return $file;
-                }
-            } catch (UnableToCheckFileExistence $exception) {
-                return $file;
-            }
+            $shouldFetchFileInformation = $component->shouldFetchFileInformation();
+
+            $url = null;
 
             if ($component->getVisibility() === 'private') {
                 try {
-                    return $storage->temporaryUrl(
+                    $url = $storage->temporaryUrl(
                         $file,
                         now()->addMinutes(5),
                     );
-                } catch (\Throwable $exception) {
+                } catch (Throwable $exception) {
                     // This driver does not support creating temporary URLs.
                 }
             }
 
-            return $storage->url($file);
+            $url ??= $storage->exists($file) ? $storage->url($file) : $file;
+
+            return [
+                'name' => ($component->isMultiple() ? ($storedFileNames[$file] ?? null) : $storedFileNames) ?? basename($file),
+                'size' => $shouldFetchFileInformation ? $storage->size($file) : 0,
+                'type' => $shouldFetchFileInformation ? $storage->mimeType($file) : null,
+                'url' => $url,
+            ];
         });
 
         $this->afterStateHydrated(static function (BaseFileUpload $component, string|array|null $state): void {

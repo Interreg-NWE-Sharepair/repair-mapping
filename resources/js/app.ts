@@ -1,8 +1,5 @@
 import './utils/bootstrap';
 import './plugins/iframe-resize';
-import Alpine from 'alpinejs';
-import FormsAlpinePlugin from '../../vendor/filament/forms/dist/module.esm';
-import NotificationsAlpinePlugin from '../../vendor/filament/notifications/dist/module.esm';
 
 import Vue from 'vue';
 
@@ -38,10 +35,3 @@ Vue.use(RepairMapPlugin);
 Vue.component('CustomRepairMap', CustomRepairComponent);
 
 new Vue({ i18n: i18n }).$mount('#app');
-
-window.Alpine = Alpine;
-
-Alpine.plugin(FormsAlpinePlugin);
-Alpine.plugin(NotificationsAlpinePlugin);
-
-Alpine.start();

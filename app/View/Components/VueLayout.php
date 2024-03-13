@@ -14,6 +14,6 @@ class VueLayout extends Component
      */
     public function render(): View
     {
-        return view('layouts.vue');
+        return view('components.layouts.vue');
     }
 }

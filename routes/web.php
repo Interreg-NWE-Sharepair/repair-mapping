@@ -2,9 +2,10 @@
 
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\PageController;
-use App\Http\Livewire\CreateLocationWizard;
-use App\Http\Livewire\EditLocationWizard;
+use App\Livewire\CreateLocationWizard;
+use App\Livewire\EditLocationWizard;
 use Illuminate\Support\Facades\Route;
+use Livewire\Livewire;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 /*
@@ -33,4 +34,8 @@ Route::group(['prefix' =>  LaravelLocalization::setLocale()], function() {
 
     Route::get('/location/create/result', [LocationController::class, 'create_result'])->name('create-result');
     Route::get('/location/edit/result', [LocationController::class, 'edit_result'])->name('edit-result');
+
+    Livewire::setUpdateRoute(function ($handle) {
+        return Route::post('/livewire/update', $handle);
+    });
 });

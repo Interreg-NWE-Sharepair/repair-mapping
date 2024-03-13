@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Livewire;
 
 use App\Http\Saloon\Requests\PostChangeSuggestionRequest;
 use App\Traits\GetsLocation;
@@ -14,20 +14,19 @@ class EditLocationWizard extends AbstractLocationWizard
 
     public function mount(string $id = null): void
     {
-        if(is_null($id)){
+        if (is_null($id)) {
             abort(404);
         }
         $this->location_id = $id;
 
         $data = $this->getLocationForForm($this->location_id);
-        if(empty($data)){
+        if (empty($data)) {
             abort(404);
         }
 
-        if(Session::exists('previous-data')) {
+        if (Session::exists('previous-data')) {
             parent::mount();
-        }
-        else {
+        } else {
             $this->form->fill($data);
         }
     }

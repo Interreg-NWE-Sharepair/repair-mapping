@@ -16,15 +16,36 @@ return [
             'street_label' => 'Straße',
         ],
         'contacts' => [
-            'email_label' => 'E-Mail',
-            'facebook_label' => 'Facebook',
-            'instagram_label' => 'Instagram',
-            'linkedin_label' => 'LinkedIn',
-            'mobile_label' => 'Mobil',
-            'phone_label' => 'Telefon',
-            'website_info' => 'Die Adresse der Website muss alle erforderlichen Elemente enthalten (https://...). Am besten kopieren Sie einfach die URL Ihrer Website und fügen sie in dieses Feld ein.',
-            'website_label' => 'Website',
-            'website_placeholder' => 'z.B. https://www.repair.org/'
+            'email' => [
+                'label' => 'E-Mail',
+                'add_label' => 'E-mail-Adresse hinzufügen',
+            ],
+            'facebook' => [
+                'label' => 'Facebook',
+                'add_label' => 'Facebook-Profil hinzufügen',
+            ],
+            'instagram' => [
+                'label' => 'Instagram',
+                'add_label' => 'Instagram-Profil hinzufügen',
+            ],
+            'linkedin' => [
+                'label' => 'LinkedIn',
+                'add_label' => 'LinkedIn-Profil hinzufügen',
+            ],
+            'mobile' => [
+                'label' => 'Mobil',
+                'add_label' => 'Handynummer hinzufügen',
+            ],
+            'phone' => [
+                'label' => 'Telefon',
+                'add_label' => 'Telefonnummer hinzufügen',
+            ],
+            'website' => [
+                'label' => 'Website',
+                'add_label' => 'Website hinzufügen',
+                'placeholder' => 'z.B. https://www.repair.org/',
+                'info' => 'Die Adresse der Website muss alle erforderlichen Elemente enthalten (https://...). Am besten kopieren Sie einfach die URL Ihrer Website und fügen sie in dieses Feld ein.',
+            ],
         ],
         'description_label' => 'Beschreibung',
         'description_placeholder' => 'Was macht Ihre Organisation? Wie trägt sie dazu bei, Abfall durch die Reparatur von Geräten zu reduzieren?',

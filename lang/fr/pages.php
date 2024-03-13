@@ -16,15 +16,36 @@ return [
             'street_label' => 'Rue',
         ],
         'contacts' => [
-            'email_label' => 'Adresse e-mail',
-            'facebook_label' => 'Facebook',
-            'instagram_label' => 'Instagram',
-            'linkedin_label' => 'LinkedIn',
-            'mobile_label' => 'Mobile',
-            'phone_label' => 'Téléphone',
-            'website_info' => 'L\'adresse du site doit contenir tous les éléments nécessaires (https://...). Il est préférable de simplement copier l\'URL de votre site Web et de la coller dans ce champ.',
-            'website_label' => 'Site web',
-            'website_placeholder' => 'ex. https://www.repair.org/'
+            'email' => [
+                'label' => 'Adresse email',
+                'add_label' => 'Ajouter une adresse email',
+            ],
+            'facebook' => [
+                'label' => 'Facebook',
+                'add_label' => 'Ajouter une page facebook',
+            ],
+            'instagram' => [
+                'label' => 'Instagram',
+                'add_label' => 'Ajouter une page Instagram',
+            ],
+            'linkedin' => [
+                'label' => 'LinkedIn',
+                'add_label' => 'Ajouter une page LinkedIn',
+            ],
+            'mobile' => [
+                'label' => 'Mobile',
+                'add_label' => 'Ajouter un numéro portable',
+            ],
+            'phone' => [
+                'label' => 'Téléphone',
+                'add_label' => 'Ajouter un numéro de téléphone',
+            ],
+            'website' => [
+                'label' => 'Site web',
+                'add_label' => 'Ajouter un site web',
+                'placeholder' => 'ex. https://www.repair.org/',
+                'info' => 'L\'adresse du site doit contenir tous les éléments nécessaires (https://...). Il est préférable de simplement copier l\'URL de votre site Web et de la coller dans ce champ.',
+            ],
         ],
         'description_label' => 'Déscription',
         'description_placeholder' => 'Que fait votre organisation ? Comment contribue-t-elle à réduire les déchets en réparant les appareils?',
