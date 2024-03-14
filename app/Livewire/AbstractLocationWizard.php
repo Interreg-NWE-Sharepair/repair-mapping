@@ -289,16 +289,17 @@ abstract class AbstractLocationWizard extends Component implements HasForms
                                 in_array('nl', $get('locales'))
                             ),
                         Radio::make('organisation_type')
-                            ->label(trans('pages.form.organisation_type_label'))
+                            ->label(new HtmlString('<span class="font-bold">'.trans('pages.form.organisation_type_label').'</span>'))
                             ->options($available_organisation_types)
                             ->default(array_key_first($available_organisation_types))
                             ->required(),
                         Placeholder::make('device_type_label')
-                            ->label(trans('pages.form.device_types_label'))
+                            ->label(new HtmlString('<span class="fi-section-header-heading text-base font-semibold leading-6 text-gray-950 dark:text-white">'
+                                . trans('pages.form.device_types_label') . '</span>'))
                             ->helperText(trans('pages.form.device_types_info')),
                         Group::make($this->createDeviceTypeSchema($locale)),
                         CheckboxList::make('ecocheques')
-                            ->label(trans('pages.form.ecocheques_label'))
+                            ->label(new HtmlString('<span class="font-bold">'.trans('pages.form.ecocheques_label').'</span>'))
                             ->options([
                                 'monizze' => 'Monizze',
                                 'edenred' => 'Edenred',
@@ -307,11 +308,11 @@ abstract class AbstractLocationWizard extends Component implements HasForms
                             ->columns(3)
                             ->statePath('ecocheques'),
                         TextInput::make('vat_number')
-                            ->label(trans('pages.form.vat_number_label'))
+                            ->label(new HtmlString('<span class="font-bold">'.trans('pages.form.vat_number_label').'</span>'))
                             ->statePath('vat_number')
                             ->nullable(),
                         Radio::make('warranty')
-                            ->label(trans('pages.form.warranty.label'))
+                            ->label(new HtmlString('<span class="font-bold">'.trans('pages.form.warranty.label').'</span>'))
                             ->helperText(trans('pages.form.warranty.text'))
                             ->default(false)
                             ->boolean(
@@ -417,7 +418,7 @@ abstract class AbstractLocationWizard extends Component implements HasForms
                 }
 
                 $list_schema[] = CheckboxList::make(str_replace('-', '_', $parent->code))
-                    ->label($parent->getTranslatedName($locale))
+                    ->label(new HtmlString("<span class='font-bold'>{$parent->getTranslatedName($locale)}</span>"))
                     ->options($parent_options)
                     ->columns(4)
                     ->statePath('device_types')
