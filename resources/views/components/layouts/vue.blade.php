@@ -148,7 +148,7 @@
                                     </div>
                                     <div class="md:ml-6">
                                         <div class="mb-2 text-center md:text-left">
-                                            © Sharepair, 2023 - Made with <span class="text-primary">♥</span> by <a class="no-underline" href="https://www.statik.be/" target="_blank" rel="noopener noreferrer">Statik.be</a>
+                                            © Sharepair, {{ date("Y") }} - Made with <span class="text-primary">♥</span> by <a class="no-underline" href="https://www.statik.be/" target="_blank" rel="noopener noreferrer">Statik.be</a>
                                         </div>
                                         <div class="flex justify-center leading-none md:justify-start">
                                             <a href="{{ route('privacy') }}" class="no-underline">{{ trans('pages.privacy.nav') }}</a>
