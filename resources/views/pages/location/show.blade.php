@@ -150,14 +150,12 @@
             @endif
             @if($location->has_warranty && isset($location->warranty_description['default']))
                 <r-section class="section--default">
-                    <r-panel>
+                    <r-panel class="truncate">
                         <h2 class="text-h2 text-secondary">
                             {{ trans('pages.location.warranty_title') }}
                         </h2>
                         @if($location->warranty_description)
-                            <span>
-                                {{ $location->getTranslatedWarrantyDescription($current_locale) }}
-                            </span>
+                            {!! $location->getTranslatedWarrantyDescription($current_locale); !!}
                         @endif
                     </r-panel>
                 </r-section>
