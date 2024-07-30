@@ -75,7 +75,7 @@ abstract class AbstractLocationWizard extends Component implements HasForms
                         Placeholder::make('step_1_title')
                             ->label('')
                             ->content(new HtmlString('<h2 class="text-primary text-h2">' . trans('pages.form.step_1_text') . '</h2>')),
-                        Grid::make(3)
+                        Grid::make(4)
                             ->schema([
                                 TextInput::make('street')
                                     ->label(trans('pages.form.address.street_label'))
@@ -85,6 +85,11 @@ abstract class AbstractLocationWizard extends Component implements HasForms
                                 TextInput::make('number')
                                     ->label(trans('pages.form.address.number_label'))
                                     ->statePath('address.number')
+                                    ->columnSpan(1)
+                                    ->nullable(),
+                                TextInput::make('bus')
+                                    ->label(trans('pages.form.address.bus_label'))
+                                    ->statePath('address.bus')
                                     ->columnSpan(1)
                                     ->nullable(),
                                 TextInput::make('zip')

@@ -13,6 +13,7 @@ return [
             'city_label' => 'Stad',
             'country_label' => 'Land',
             'number_label' => 'Nummer',
+            'bus_label' => 'Bus',
             'postal_code_label' => 'Postcode',
             'street_label' => 'Straat',
         ],

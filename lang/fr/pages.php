@@ -12,6 +12,7 @@ return [
             'city_label' => 'Ville',
             'country_label' => 'Pays',
             'number_label' => 'Nombre',
+            'bus_label' => 'Numéro de boîte',
             'postal_code_label' => 'Code postal',
             'street_label' => 'Rue',
         ],
